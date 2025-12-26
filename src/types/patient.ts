@@ -5,6 +5,8 @@ export type CodeStatus = 'Full Code' | 'DNR' | 'DNI' | 'DNR/DNI';
 export type LayoutName = string;
 export type OrientationStatus = 'x1' | 'x2' | 'x3' | 'x4' | 'N/A';
 export type StaffRole = 'Staff Nurse' | 'Charge Nurse' | 'Float Pool Nurse' | 'Unit Clerk' | 'Patient Care Tech' | 'Sitter';
+export type RoomStatus = 'clean' | 'dirty';
+export type TransferStatus = 'none' | 'pending_in' | 'pending_out';
 
 
 export interface Patient {
@@ -30,6 +32,8 @@ export interface Patient {
   isInRestraints: boolean;
   isComfortCareDNR: boolean;
   isBlocked?: boolean;
+  roomStatus?: RoomStatus; // clean or dirty
+  transferStatus?: TransferStatus; // none, pending_in, or pending_out
   notes?: string;
   gridRow: number; // 1-indexed
   gridColumn: number; // 1-indexed
@@ -56,4 +60,19 @@ export interface AssignmentSet {
             patientName: string;
         }[];
     }[];
+}
+
+export interface UnitStatistics {
+    unitName: LayoutName;
+    beddedPatients: number;
+    availableRooms: number;
+    dirtyRooms: number;
+    blockedRooms: number;
+    pendingTransfersIn: number;
+    pendingTransfersOut: number;
+    totalRooms: number;
+}
+
+export interface FacilityConfig {
+    facilityName: string;
 }
