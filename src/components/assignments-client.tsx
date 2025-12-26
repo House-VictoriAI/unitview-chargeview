@@ -103,38 +103,23 @@ export default function AssignmentsClient({
                         <h2 className="text-2xl font-bold mb-4">Patient Care Techs</h2>
                         <div className="space-y-4">
                             {techs.map((tech) => {
-                                const assignedPatients = activePatients.filter(p => 
-                                    tech.assignedPatientIds.includes(p.id)
-                                );
-
                                 return (
                                     <Card key={tech.id}>
                                         <CardHeader>
                                             <CardTitle className="flex items-center justify-between">
                                                 <span>{tech.name}</span>
                                                 <span className="text-sm text-muted-foreground font-normal">
-                                                    {tech.role} • {assignedPatients.length} patient(s)
+                                                    Patient Care Tech • {tech.assignmentGroup}
                                                 </span>
                                             </CardTitle>
                                         </CardHeader>
                                         <CardContent>
-                                            {assignedPatients.length > 0 ? (
-                                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                                                    {assignedPatients.map((patient) => (
-                                                        <div 
-                                                            key={patient.id}
-                                                            className="p-3 border rounded-lg bg-secondary/50"
-                                                        >
-                                                            <div className="font-semibold">{patient.roomDesignation}</div>
-                                                            <div className="text-sm">{patient.name}</div>
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            ) : (
-                                                <p className="text-muted-foreground text-sm">
-                                                    No patients assigned
-                                                </p>
-                                            )}
+                                            <p className="text-sm text-muted-foreground">
+                                                Assignment Group: {tech.assignmentGroup}
+                                            </p>
+                                            <p className="text-xs text-muted-foreground mt-2">
+                                                Spectra: {tech.spectra}
+                                            </p>
                                         </CardContent>
                                     </Card>
                                 );
