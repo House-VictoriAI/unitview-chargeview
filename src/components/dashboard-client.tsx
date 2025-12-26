@@ -12,8 +12,14 @@ interface DashboardClientProps {
     unitsStatistics: UnitStatistics[];
 }
 
-const StatBadge: React.FC<{ icon: React.ElementType, label: string, value: number, className?: string }> = 
-({ icon: Icon, label, value, className = "" }) => (
+interface StatBadgeProps {
+    icon: React.ElementType;
+    label: string;
+    value: number;
+    className?: string;
+}
+
+const StatBadge: React.FC<StatBadgeProps> = ({ icon: Icon, label, value, className = "" }) => (
     <div className={`flex items-center gap-2 ${className}`}>
         <Icon className="h-4 w-4 text-muted-foreground" />
         <div className="flex flex-col">
